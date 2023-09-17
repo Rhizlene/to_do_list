@@ -1,0 +1,48 @@
+<!doctype html>
+    <html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <title>To Do List</title>
+        <script src="./node_modules/angular/angular.js"></script>
+        <script src="list.js"></script>
+        <link rel="stylesheet" href="list.css">
+        <link rel="icon" type="image/png" sizes="16*16" href="image/logo_list.png">
+        <link rel="stylesheet" href="bootstrap/bootstrap.min.css">
+    </head>
+    <body class="py-5" ng-app="myApp" ng-controller="ControleurListe">
+
+        <div class="container w-50 shadow-lg p-3 mb-5 bg-white rounded">
+            
+            <div class="pt-3">
+                <div class="container image ">
+                    <img class="logo" src="image/logo_list.png">
+                    <h1 class="text-center ">To Do List</h1>
+                </div>
+            </div>
+           
+            
+            <center>
+                <div class="w-75 pt-4">
+                    <ol class="list-group">
+                        <li class="list-group-item d-flex justify-content-between align-items-center" id="li" ng-repeat="task in list track by $index">
+                            <div class="ms-2 me-auto w-100">
+                                <input class="form-control shadow-none border-0 w-100" id="liInput" type="text" ng-model="task.name" ng-readonly="!task.isEditing"/>
+                            </div>
+                            <button class=" btn btn-outline-light border-0 bg-transparent" ng-click="update(task,$index)">
+                                <span ng-if="!task.isEditing">✏️</span>
+                                <span ng-if="task.isEditing">✅</span>
+                            </button>
+                            <button class=" btn btn-outline-light border-0 bg-transparent" ng-click="delete($index)">❌</button>
+                        </li>      
+                    </ol>
+                </div>
+            
+                <div class="input-group w-75  py-4">
+                    <input type="text" class="form-control" ng-model="newTask"/>
+                    <button ng-click="add()" class="btn btn-outline-secondary" ng-init="">Ajouter</button> 
+                </div>
+            </center>
+
+        </div>
+    </body>
+</html>
